@@ -76,8 +76,7 @@ private ProgressDialog progressDialog;
                 return params;
             }
         };
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
     }
         public void onClick(View view){
         if(view==buttonRegister)
