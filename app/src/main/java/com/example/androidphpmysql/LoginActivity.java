@@ -1,11 +1,12 @@
 package com.example.androidphpmysql;
-
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -21,25 +22,34 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-    private EditText editTextUsername,editTextPassword;
-private Button buttonLogin;
-private ProgressDialog progressDialog;
+
+    private EditText editTextUsername, editTextPassword;
+    private Button buttonLogin;
+    private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-    editTextUsername=(EditText)findViewById(R.id.editTextUsername);
-        editTextPassword=(EditText)findViewById(R.id.editTextPassword);
-        buttonLogin=(Button)findViewById(R.id.buttonLogin);
-        progressDialog=new ProgressDialog(this);
+
+        editTextUsername = (EditText) findViewById(R.id.editTextUsername);
+        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+        buttonLogin = (Button) findViewById(R.id.buttonLogin);
+
+        progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
+
         buttonLogin.setOnClickListener(this);
+
     }
+
     private void userLogin(){
-        final String username=editTextUsername.getText().toString().trim();
-        final String password=editTextPassword.getText().toString().trim();
+        final String username = editTextUsername.getText().toString().trim();
+        final String password = editTextPassword.getText().toString().trim();
+
         progressDialog.show();
-        StringRequest stringRequest=new StringRequest(
+
+        StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
                 Constants.URL_LOGIN,
                 new Response.Listener<String>() {
@@ -47,21 +57,19 @@ private ProgressDialog progressDialog;
                     public void onResponse(String response) {
                         progressDialog.dismiss();
                         try {
-                            JSONObject obj=new JSONObject(response);
-                        if(!obj.getBoolean("error")){
-SharedPrefManager.getInstance(getApplicationContext()).userLogin(
-        obj.getInt("id"),
-        obj.getString("username"),
-        obj.getString("email")
-);
-                            Toast.makeText(getApplicationContext(),
-                                    "User LoggedIn",
-                                    Toast.LENGTH_LONG).show();
-                        }else{
-                            Toast.makeText(getApplicationContext(),
-                                    obj.getString("message"),
-                                    Toast.LENGTH_LONG).show();
-                        }
+                            JSONObject obj = new JSONObject(response);
+                            if(!obj.getBoolean("error")){
+                                SharedPrefManager.getInstance(getApplicationContext())
+                                        .userLogin(
+                                                obj.getInt("id"),
+                                                obj.getString("name"),
+                                                obj.getString("username"),
+                                                obj.getString("email")
+                                        );
+                                Toast.makeText(getApplicationContext(), obj.getString("Logged in"), Toast.LENGTH_LONG).show();
+                            }else{
+                                Toast.makeText(getApplicationContext(), obj.getString("error"), Toast.LENGTH_LONG).show();
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -70,29 +78,33 @@ SharedPrefManager.getInstance(getApplicationContext()).userLogin(
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-progressDialog.dismiss();
+                        progressDialog.dismiss();
 
-                        Toast.makeText(getApplicationContext(),
+                        Toast.makeText(
+                                getApplicationContext(),
                                 error.getMessage(),
-                                Toast.LENGTH_LONG).show();
+                                Toast.LENGTH_LONG
+                        ).show();
                     }
                 }
         ){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String>params=new HashMap<>();
-                params.put("userrname",username);
-                params.put("password",password);
+                Map<String, String> params = new HashMap<>();
+                params.put("username", username);
+                params.put("password", password);
                 return params;
             }
+
         };
+
         RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
     }
 
     @Override
-    public void onClick(View v) {
-if(v==buttonLogin){
-    userLogin();
-}
+    public void onClick(View view) {
+        if(view == buttonLogin){
+            userLogin();
+        }
     }
 }
