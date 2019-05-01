@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-private EditText editTextName,editTextUserName,editTextEmail,editTextPassword;
+private EditText editTextResume,editTextName,editTextUserName,editTextEmail,editTextPassword;
 private Button buttonRegister;
 private ProgressDialog progressDialog;
 private TextView textViewLogin;
@@ -35,6 +35,7 @@ private TextView textViewLogin;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        editTextResume=(EditText)findViewById(R.id.editTextResume);
         editTextEmail=(EditText)findViewById(R.id.editTextEmail);
         editTextName=(EditText)findViewById(R.id.editTextName);
         editTextUserName=(EditText)findViewById(R.id.editTextUsername);
@@ -56,6 +57,7 @@ private TextView textViewLogin;
         final String name = editTextName.getText().toString().trim();
         final String username = editTextUserName.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();
+        final String resume = editTextResume.getText().toString().trim();
         progressDialog.setMessage("registering user..");
         progressDialog.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.URL_REGISTER, new Response.Listener<String>() {
@@ -84,6 +86,7 @@ private TextView textViewLogin;
                 params.put("name", name);
                 params.put("username", username);
                 params.put("password", password);
+                params.put("resume", resume);
                 return params;
             }
         };

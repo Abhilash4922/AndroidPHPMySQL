@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 public class ProfileActivity extends AppCompatActivity {
-private TextView textViewName,textViewUserName,textViewEmail;
+private TextView textViewName,textViewUserName,textViewEmail,textViewResume;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +19,7 @@ private TextView textViewName,textViewUserName,textViewEmail;
         }
         textViewName=(TextView)findViewById(R.id.textViewName);
         textViewUserName=(TextView)findViewById(R.id.textViewUserName);
+        textViewResume=(TextView)findViewById(R.id.textViewResume);
         textViewEmail=(TextView)findViewById(R.id.textViewEmail);
         textViewName.setText(SharedPrefManager.getInstance(this).getName());
         textViewUserName.setText(SharedPrefManager.getInstance(this).getUsername());
