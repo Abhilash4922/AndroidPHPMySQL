@@ -12,10 +12,10 @@ import com.android.volley.toolbox.Volley;
 
 public class SharedPrefManager {
 
-    private static final String KEY_USER_NAME ="name" ;
+
     private static SharedPrefManager mInstance;
     private static Context mCtx;
-
+    private static final String KEY_USER_NAME ="name" ;
     private static final String SHARED_PREF_NAME = "mysharedpref12";
     private static final String KEY_USERNAME = "username";
     private static final String KEY_USER_EMAIL = "useremail";
@@ -68,6 +68,11 @@ public class SharedPrefManager {
     public String getUsername(){
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(KEY_USERNAME, null);
+    }
+
+    public String getName(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_USER_NAME, null);
     }
 
     public String getUserEmail(){

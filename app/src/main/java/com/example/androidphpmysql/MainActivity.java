@@ -44,6 +44,12 @@ private TextView textViewLogin;
          buttonRegister.setOnClickListener((View.OnClickListener) this);
          textViewLogin=(TextView)findViewById(R.id.textViewLogin);
          textViewLogin.setOnClickListener((View.OnClickListener) this);
+
+        if(SharedPrefManager.getInstance(this).isLoggedIn()){
+            finish();
+            startActivity(new Intent(this,ProfileActivity.class));
+            return;
+        }
     }
     private void registerUser() {
         final String email = editTextEmail.getText().toString().trim();
