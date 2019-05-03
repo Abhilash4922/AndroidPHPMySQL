@@ -2,13 +2,6 @@ package com.example.androidphpmysql;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
-
-/**
- * Created by Belal on 26/11/16.
- */
 
 public class SharedPrefManager {
 
