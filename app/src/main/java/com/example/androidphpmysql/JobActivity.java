@@ -1,10 +1,7 @@
 package com.example.androidphpmysql;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +10,6 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -23,83 +19,51 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class JobActivity extends AppCompatActivity {
-    private static final String URL_DATA="http://192.168.0.105/android/v1/job.php";
-    private String jtitle;
-    private String link;
-    private String description;
+    private static final String URL_DATA="http://192.168.0.107/android/v1/job.php";
 private RecyclerView recyclerView;
 private RecyclerView.Adapter adapter;
-private List<JobActivity>jobActivities;
-    private static JobActivity JobInstance;
-    private static Context mCtx;
-    public JobActivity(String jtitle, String link, String description) {
-        this.jtitle = jtitle;
-        this.link = link;
-        this.description = description;
-}
-
-    private JobActivity(Context context) {
-        mCtx = context;
-
-    }
-
-
-    public String getJtitle() {
-        return jtitle;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
+private List<Job>jobs;
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-setContentView(R.layout.activity_job);
-        recyclerView=(RecyclerView)findViewById(R.id.recylcerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        jobActivities=new ArrayList<>();
-loadRecyclerViewData();
+        setContentView(R.layout.activity_job);
+    recyclerView=(RecyclerView)findViewById(R.id.recylcerView);
+    recyclerView.setHasFixedSize(true);
+    recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    loadJob();
     }
-private void loadRecyclerViewData(){
-    ProgressDialog progressDialog=new ProgressDialog(this);
-    progressDialog.setMessage("Loading Jobs...");
-    progressDialog.show();
-    StringRequest stringRequest=new StringRequest(Request.Method.GET, URL_DATA, new Response.Listener<String>() {
-        @Override
-        public void onResponse(String response) {
-            try {
-                JSONArray jsonObject=new JSONArray(response);
-                for(int i=0;i<jsonObject.length();i++){
-                    JSONObject obj=jsonObject.getJSONObject(i);
-                    String title=obj.getString("title");
-                    String description=obj.getString("discription");
-                    String link=obj.getString("link");
-                    JobActivity jobActivity=new JobActivity(title,description,link);
-                    jobActivities.add(jobActivity);
+private void loadJob(){
+    StringRequest stringRequest=new StringRequest(Request.Method.GET, URL_DATA,
+            new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONArray jsonArray=new JSONArray(response);
+                    for(int i=0;i<jsonArray.length();i++)
+                    {
+                        JSONObject jsonObject=jsonArray.getJSONObject(i);
+                        String title=jsonObject.getString("title");
+                        String description=jsonObject.getString("description");
+                        String link=jsonObject.getString("link");
+                        Job job1=new Job(title,description,link);
+                        jobs.add(job1);
+                    }
+                        adapter=new JobAdapter(jobs, JobActivity.this);
+                        recyclerView.setAdapter(adapter);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
-                adapter=new JobAdapter(JobActivity.this,jobActivities);
-                } catch (JSONException e1) {
-                e1.printStackTrace();
-            }
-        }
-    }, new Response.ErrorListener() {
+            }, new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError error) {
             Toast.makeText(JobActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
         }
     });
-    RequestQueue requestQueue= Volley.newRequestQueue(this);
-    requestQueue.add(stringRequest);
+    Volley.newRequestQueue(this).add(stringRequest);
 }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
