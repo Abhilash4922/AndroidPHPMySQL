@@ -13,22 +13,23 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textViewInternTitle"
+            android:id="@+id/textViewTitleIntern"
             android:text="Internship Title"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textViewInternDiscription"
+            android:id="@+id/textViewDiscriptionIntern"
             android:text="Internship Discription"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textViewInternLink"
-            android:text="nternship Link"
+            android:id="@+id/textViewLinkIntern"
+            android:text="Internship Link"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
         <Button
+            android:id="@+id/buttonIntern"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Apply"/>

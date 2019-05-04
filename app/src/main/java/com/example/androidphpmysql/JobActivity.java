@@ -19,45 +19,48 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class JobActivity extends AppCompatActivity {
-    private static final String URL_DATA="http://192.168.0.107/android/v1/job.php";
-private RecyclerView recyclerView;
-private RecyclerView.Adapter adapter;
-private List<Job>jobs;
+    private static final String URL_DATA="http://192.168.1.5/android/v1/job.php";
+ RecyclerView recyclerView;
+ JobAdapter adapter;
+
+private List<Job>jobList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job);
-    recyclerView=(RecyclerView)findViewById(R.id.recylcerView);
-    recyclerView.setHasFixedSize(true);
-    recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    loadJob();
+        jobList = new ArrayList<>();
+        recyclerView = (RecyclerView) findViewById(R.id.recylcerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        loadJob();
+
     }
 private void loadJob(){
-    StringRequest stringRequest=new StringRequest(Request.Method.GET, URL_DATA,
-            new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    try {
-                        JSONArray jsonArray=new JSONArray(response);
-                    for(int i=0;i<jsonArray.length();i++)
-                    {
-                        JSONObject jsonObject=jsonArray.getJSONObject(i);
-                        String title=jsonObject.getString("title");
-                        String description=jsonObject.getString("description");
-                        String link=jsonObject.getString("link");
-                        Job job1=new Job(title,description,link);
-                        jobs.add(job1);
-                    }
-                        adapter=new JobAdapter(jobs, JobActivity.this);
-                        recyclerView.setAdapter(adapter);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }, new Response.ErrorListener() {
+    StringRequest stringRequest=new StringRequest(Request.Method.GET, URL_DATA, new Response.Listener<String>() {
+        @Override
+        public void onResponse(String response) {
+            try {
+                JSONArray products=new JSONArray(response);
+            for(int i=0;i<products.length();i++){
+                JSONObject obj=products.getJSONObject(i);
+                String title=obj.getString("title");
+                String description=obj.getString("description");
+                String link=obj.getString("link");
+                Job job=new Job(title,description,link);
+                jobList.add(job);
+            }
+
+                adapter = new JobAdapter(JobActivity.this, jobList);
+                recyclerView.setAdapter(adapter);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }, new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError error) {
             Toast.makeText(JobActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
