@@ -11,43 +11,44 @@ import android.widget.TextView;
 import java.util.List;
 
 public class InternAdapter extends RecyclerView.Adapter<InternAdapter.ViewHolder> {
-   private List<Intern>interns;
-   private Context context;
+    private List<Intern>internList;
+    private Context context;
 
-    public InternAdapter(Context context,List<Intern> interns) {
-        this.interns = interns;
+    public InternAdapter( Context context,List<Intern>interns) {
+        this.internList = interns;
         this.context = context;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.intern,viewGroup,false);
-        return new ViewHolder(v);
+        LayoutInflater layoutInflater=LayoutInflater.from(context);
+        View view= layoutInflater.inflate(R.layout.intern,viewGroup,false);
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-Intern intern=interns.get(i);
-viewHolder.textViewTitleIntern.setText(intern.getTitleIntern());
-viewHolder.textViewDescriptionIntern.setText(intern.getDescriptionIntern());
-viewHolder.textViewLinkIntern.setText(intern.getLinkIntern());
+        Intern intern=internList.get(i);
+        viewHolder.textViewTitleIntern.setText(intern.getiTitle());
+        viewHolder.textViewDescriptionIntern  .setText(intern.getIdescription());
+        viewHolder.textViewLinkIntern.setText(intern.getiLink());
     }
 
     @Override
     public int getItemCount() {
-        return interns.size();
+        return internList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-public TextView textViewTitleIntern;
+        public TextView textViewTitleIntern;
         public TextView textViewDescriptionIntern;
         public TextView textViewLinkIntern;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewTitleIntern=(TextView)itemView.findViewById(R.id.textViewTitleIntern);
-            textViewDescriptionIntern=(TextView)itemView.findViewById(R.id.textViewDescriptionIntern);
-            textViewLinkIntern=(TextView)itemView.findViewById(R.id.textViewLinkIntern);
+            textViewTitleIntern=itemView.findViewById(R.id.textViewTitleIntern);
+            textViewDescriptionIntern=itemView.findViewById(R.id.textViewDescriptionIntern);
+            textViewLinkIntern=itemView.findViewById(R.id.textViewLinkIntern);
         }
     }
 }

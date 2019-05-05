@@ -23,37 +23,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InternActivity extends AppCompatActivity {
-private static final String URL_INTERN="http://192.168.1.5/android/v1/intern.php";
+    private static final String URL_DATA="http://192.168.1.5/android/v1/intern.php";
     RecyclerView recyclerView;
-InternAdapter internAdapter;
-List<Intern> internList;
+    InternAdapter internAdapter;
+
+    private List<Intern>internList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intern);
-internList=new ArrayList<>();
-RecyclerView recyclerView=(RecyclerView)findViewById(R.id.recylcerViewIntern);
-recyclerView.setHasFixedSize(true);
-recyclerView.setLayoutManager(new LinearLayoutManager(this));
-internList=new ArrayList<>();
-loadIntern();
+        internList = new ArrayList<>();
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewIntern);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        loadIntern();
 
     }
     private void loadIntern(){
-        StringRequest stringRequest=new StringRequest(Request.Method.GET, URL_INTERN, new Response.Listener<String>() {
+        StringRequest stringRequest=new StringRequest(Request.Method.GET, URL_DATA, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONArray jsonArray=new JSONArray(response);
                     for(int i=0;i<jsonArray.length();i++){
-                        JSONObject jsonObject=jsonArray.getJSONObject(i);
-                        String titleIntern=jsonObject.getString("titleIntern");
-                        String descriptionIntern=jsonObject.getString("descriptionIntern");
-                        String linkIntern=jsonObject.getString("linkIntern");
-                        Intern intern=new Intern(titleIntern,descriptionIntern,linkIntern);
+                        JSONObject obj1=jsonArray.getJSONObject(i);
+                        String ititle=obj1.getString("ititle");
+                        String idescription=obj1.getString("idescription");
+                        String ilink=obj1.getString("ilink");
+                        Intern intern=new Intern(ititle,idescription,ilink);
                         internList.add(intern);
                     }
-                    internAdapter=new InternAdapter(InternActivity.this,internList);
+
+                    internAdapter = new InternAdapter(InternActivity.this, internList);
                     recyclerView.setAdapter(internAdapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -62,7 +63,6 @@ loadIntern();
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
                 Toast.makeText(InternActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
