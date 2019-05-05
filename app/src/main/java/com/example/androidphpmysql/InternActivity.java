@@ -23,51 +23,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InternActivity extends AppCompatActivity {
-    private static final String URL_DATA="http://192.168.1.5/android/v1/intern.php";
- RecyclerView recyclerView;
- InternAdapter adapter;
-
-private List<Intern>internList;
+private static final String URL_INTERN="http://192.168.1.5/android/v1/intern.php";
+    RecyclerView recyclerView;
+InternAdapter internAdapter;
+List<Intern> internList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intern);
-        internList = new ArrayList<>();
-        recyclerView = (RecyclerView) findViewById(R.id.recylcerViewIntern);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        loadIntern();
+internList=new ArrayList<>();
+RecyclerView recyclerView=(RecyclerView)findViewById(R.id.recylcerViewIntern);
+recyclerView.setHasFixedSize(true);
+recyclerView.setLayoutManager(new LinearLayoutManager(this));
+internList=new ArrayList<>();
+loadIntern();
 
     }
-private void loadIntern(){
-    StringRequest stringRequest=new StringRequest(Request.Method.GET, URL_DATA, new Response.Listener<String>() {
-        @Override
-        public void onResponse(String response) {
-            try {
-                JSONArray products=new JSONArray(response);
-            for(int i=0;i<products.length();i++){
-                JSONObject obj=products.getJSONObject(i);
-                String titleIntern=obj.getString("titleIntern");
-                String descriptionIntern=obj.getString("descriptionIntern");
-                String linkIntern=obj.getString("linkIntern");
-                Intern job=new Intern(titleIntern,descriptionIntern,linkIntern);
-                internList.add(job);
+    private void loadIntern(){
+        StringRequest stringRequest=new StringRequest(Request.Method.GET, URL_INTERN, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray jsonArray=new JSONArray(response);
+                    for(int i=0;i<jsonArray.length();i++){
+                        JSONObject jsonObject=jsonArray.getJSONObject(i);
+                        String titleIntern=jsonObject.getString("titleIntern");
+                        String descriptionIntern=jsonObject.getString("descriptionIntern");
+                        String linkIntern=jsonObject.getString("linkIntern");
+                        Intern intern=new Intern(titleIntern,descriptionIntern,linkIntern);
+                        internList.add(intern);
+                    }
+                    internAdapter=new InternAdapter(InternActivity.this,internList);
+                    recyclerView.setAdapter(internAdapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
 
-                adapter = new InternAdapter(InternActivity.this, internList);
-                recyclerView.setAdapter(adapter);
-            } catch (JSONException e) {
-                e.printStackTrace();
+                Toast.makeText(InternActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
             }
-        }
-    }, new Response.ErrorListener() {
-        @Override
-        public void onErrorResponse(VolleyError error) {
-            Toast.makeText(InternActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
-        }
-    });
-    Volley.newRequestQueue(this).add(stringRequest);
-}
+        });
+        Volley.newRequestQueue(this).add(stringRequest);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);
@@ -83,7 +83,7 @@ private void loadIntern(){
                 startActivity(new Intent(this,LoginActivity.class));
                 break;
             case R.id.menuJobs:
-                startActivity(new Intent(this, JobActivity.class));
+                startActivity(new Intent(this,JobActivity.class));
                 break;
             case R.id.menuInternship:
                 startActivity(new Intent(this,InternActivity.class));

@@ -2,37 +2,36 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content">
-<android.support.v7.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <LinearLayout
-        android:padding="@dimen/cardview_compat_inset_shadow"
-        android:orientation="vertical"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textViewTitleIntern"
-            android:text="Internship Title"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textViewDiscriptionIntern"
-            android:text="Internship Discription"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textViewLinkIntern"
-            android:text="Internship Link"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
-        <Button
-            android:id="@+id/buttonIntern"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Apply"/>
-    </LinearLayout>
-</android.support.v7.widget.CardView>
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewTitleIntern"
+                android:text="Intern Title"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewDescriptionIntern"
+                android:text="Intern Description"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewLinkIntern"
+                android:text="Intern Link"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+            <Button
+                android:id="@+id/buttonIntern"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Apply"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 </LinearLayout>
