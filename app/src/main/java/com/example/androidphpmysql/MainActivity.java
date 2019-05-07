@@ -30,7 +30,7 @@ private TextView textViewLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_main);
 
         editTextEmail=(EditText)findViewById(R.id.editTextEmail);
         editTextName=(EditText)findViewById(R.id.editTextName);
