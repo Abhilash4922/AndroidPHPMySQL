@@ -15,6 +15,13 @@
                 android:id="@+id/textViewTitleIntern"
                 android:text="Intern Title"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewLinkIntern"
+                android:text="Intern Link"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -24,8 +31,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textViewLinkIntern"
-                android:text="Intern Link"
+                android:id="@+id/textViewIDIntern"
+                android:text="Intern ID"
+                android:visibility="invisible"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
             <Button
                 android:id="@+id/buttonIntern"
