@@ -37,7 +37,6 @@ private List<Job>jobList;
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         loadJob();
-
     }
 private void loadJob(){
     StringRequest stringRequest=new StringRequest(Request.Method.GET, URL_DATA, new Response.Listener<String>() {
@@ -70,6 +69,7 @@ private void loadJob(){
     });
     Volley.newRequestQueue(this).add(stringRequest);
 }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);
@@ -96,4 +96,4 @@ private void loadJob(){
         }
         return true;
     }
-}
+    }
