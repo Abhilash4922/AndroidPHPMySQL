@@ -2,7 +2,8 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content">
-<android.support.v7.widget.CardView
+
+    <android.support.v7.widget.CardView
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <LinearLayout
@@ -38,12 +39,12 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:visibility="visible" />
 
+
         <TextView
             android:id="@+id/textViewUserId"
-            android:layout_width="183dp"
-            android:layout_height="3dp"
-            android:text="Job User_ID"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:layout_width="83dp"
+            android:layout_height="wrap_content"
+            android:text="Job User ID"
             android:visibility="visible" />
 
         <Button

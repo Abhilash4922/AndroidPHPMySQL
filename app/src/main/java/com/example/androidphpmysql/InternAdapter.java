@@ -33,6 +33,8 @@ public class InternAdapter extends RecyclerView.Adapter<InternAdapter.ViewHolder
         viewHolder.textViewTitleIntern.setText(intern.getiTitle());
         viewHolder.textViewDescriptionIntern  .setText(intern.getIdescription());
         viewHolder.textViewLinkIntern.setText(intern.getiLink());
+        viewHolder.textViewIDIntern.setText(""+intern.getId());
+        viewHolder.textViewUserId.setText(""+intern.getUser_id());
     }
 
     @Override
@@ -44,11 +46,15 @@ public class InternAdapter extends RecyclerView.Adapter<InternAdapter.ViewHolder
         public TextView textViewTitleIntern;
         public TextView textViewDescriptionIntern;
         public TextView textViewLinkIntern;
+        public TextView textViewIDIntern;
+        public TextView textViewUserId;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewTitleIntern=itemView.findViewById(R.id.textViewTitleIntern);
             textViewDescriptionIntern=itemView.findViewById(R.id.textViewDescriptionIntern);
             textViewLinkIntern=itemView.findViewById(R.id.textViewLinkIntern);
+            textViewUserId=itemView.findViewById(R.id.textViewUserId);
+            textViewIDIntern=itemView.findViewById(R.id.textViewIDIntern);
         }
     }
 }

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InternActivity extends AppCompatActivity {
-    private static final String URL_DATA="http://192.168.1.2/android/v1/intern.php";
+    private static final String URL_DATA="http://192.168.43.129/android/v1/intern.php";
     RecyclerView recyclerView;
     InternAdapter internAdapter;
 
@@ -50,7 +50,9 @@ public class InternActivity extends AppCompatActivity {
                         String ititle=obj1.getString("ititle");
                         String idescription=obj1.getString("idescription");
                         String ilink=obj1.getString("ilink");
-                        Intern intern=new Intern(ititle,idescription,ilink);
+                        int id=obj1.getInt("id");
+                        int user_id=obj1.getInt("user_id");
+                        Intern intern=new Intern(ititle,idescription,ilink,id,user_id);
                         internList.add(intern);
                     }
 
@@ -87,6 +89,9 @@ public class InternActivity extends AppCompatActivity {
                 break;
             case R.id.menuInternship:
                 startActivity(new Intent(this,InternActivity.class));
+                break;
+            case R.id.menuProfile:
+                startActivity(new Intent(this,ProfileActivity.class));
                 break;
         }
         return true;

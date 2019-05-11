@@ -33,8 +33,17 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textViewIDIntern"
                 android:text="Intern ID"
-                android:visibility="invisible"
+                android:visibility="visible"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+
+
+            <TextView
+                android:id="@+id/textViewUserId"
+                android:layout_width="83dp"
+                android:layout_height="wrap_content"
+                android:text="Job User ID"
+                android:visibility="visible" />
+
             <Button
                 android:id="@+id/buttonIntern"
                 android:layout_width="match_parent"

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JobActivity extends AppCompatActivity {
-    private static final String URL_DATA="http://192.168.1.2/android/v1/job.php";
+    private static final String URL_DATA="http://192.168.43.129/android/v1/job.php";
  RecyclerView recyclerView;
  JobAdapter adapter;
 
@@ -47,10 +47,12 @@ private void loadJob(){
                 JSONArray products=new JSONArray(response);
             for(int i=0;i<products.length();i++){
                 JSONObject obj=products.getJSONObject(i);
+                int user_id=obj.getInt("user_id");
+                int id=obj.getInt("id");
                 String title=obj.getString("title");
                 String description=obj.getString("description");
                 String link=obj.getString("link");
-                Job job=new Job(title,description,link);
+                Job job=new Job(title,description,link,id,user_id);
                 jobList.add(job);
             }
 
@@ -87,6 +89,9 @@ private void loadJob(){
                 break;
             case R.id.menuInternship:
                 startActivity(new Intent(this,InternActivity.class));
+                break;
+            case R.id.menuProfile:
+                startActivity(new Intent(this,ProfileActivity.class));
                 break;
         }
         return true;

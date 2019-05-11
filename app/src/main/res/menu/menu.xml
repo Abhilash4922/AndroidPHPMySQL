@@ -8,6 +8,9 @@
         android:title="Internship"/>
     <item
     android:id="@+id/menuLogout"
-    android:title="logout"/>
+    android:title="Logout"/>
+    <item
+        android:id="@+id/menuProfile"
+        android:title="Profile"/>
 
 </menu>

@@ -46,6 +46,9 @@ private TextView textViewName,textViewUserName,textViewEmail;
             case R.id.menuInternship:
                 startActivity(new Intent(this,InternActivity.class));
                 break;
+            case R.id.menuProfile:
+                startActivity(new Intent(this,ProfileActivity.class));
+                break;
         }
 return true;
     }

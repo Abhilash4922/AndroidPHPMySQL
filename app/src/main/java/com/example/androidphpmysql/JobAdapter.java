@@ -30,7 +30,8 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
 Job job=jobList.get(i);
-
+        viewHolder.textViewUserId.setText(""+job.getUser_id());
+viewHolder.textViewJobId.setText(""+job.getId());
 viewHolder.textViewTitle.setText(job.getTitle());
         viewHolder.textViewDescription  .setText(job.getDescription());
         viewHolder.textViewLink.setText(job.getLink());
@@ -42,13 +43,15 @@ viewHolder.textViewTitle.setText(job.getTitle());
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-public TextView textViewUserId;
+        public TextView textViewUserId;
+        public TextView textViewJobId;
         public TextView textViewTitle;
         public TextView textViewDescription;
         public TextView textViewLink;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewUserId=itemView.findViewById(R.id.textViewUserId);
+            textViewJobId=itemView.findViewById(R.id.textViewJobId);
             textViewTitle=itemView.findViewById(R.id.textViewTitle);
             textViewDescription=itemView.findViewById(R.id.textViewDiscription);
             textViewLink=itemView.findViewById(R.id.textViewLink);
