@@ -94,5 +94,6 @@ private TextView textViewLogin;
         if(view==textViewLogin)
             startActivity(new Intent(this,LoginActivity.class));
     }
+
 }
 

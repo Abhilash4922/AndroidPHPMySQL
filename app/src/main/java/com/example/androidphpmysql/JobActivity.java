@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JobActivity extends AppCompatActivity {
-    private static final String URL_DATA="http://192.168.43.129/android/v1/job.php";
+    private static final String URL_DATA="http://192.168.1.7/android/v1/job.php";
  RecyclerView recyclerView;
  JobAdapter adapter;
 
@@ -32,6 +32,7 @@ private List<Job>jobList;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job);
+
         jobList = new ArrayList<>();
         recyclerView = (RecyclerView) findViewById(R.id.recylcerView);
         recyclerView.setHasFixedSize(true);
@@ -96,4 +97,5 @@ private void loadJob(){
         }
         return true;
     }
-    }
+
+}

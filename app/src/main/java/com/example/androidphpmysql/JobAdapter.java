@@ -32,7 +32,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
 Job job=jobList.get(i);
         viewHolder.textViewUserId.setText(""+job.getUser_id());
 viewHolder.textViewJobId.setText(""+job.getId());
-viewHolder.textViewTitle.setText(job.getTitle());
+viewHolder.textViewTitle.setText(job.getJobTitle());
         viewHolder.textViewDescription  .setText(job.getDescription());
         viewHolder.textViewLink.setText(job.getLink());
     }
