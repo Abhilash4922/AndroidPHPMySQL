@@ -1,30 +1,38 @@
 package com.example.androidphpmysql;
 
 public class Intern {
+
     private String ititle;
     private String idescription;
     private String ilink;
+    private int iid;
     private int user_id;
-    private int id;
 
-    public Intern(String titleIntern, String descriptionIntern, String linkIntern,int user_id,int id) {
-        this.ititle = titleIntern;
+    public Intern(String ititle, String idescription, String ilink,int iid,int user_id) {
+
+        this.ititle = ititle;
+        this.idescription = idescription;
+        this.ilink = ilink;
+        this.iid=iid;
         this.user_id=user_id;
-        this.id=id;
-        this.idescription = descriptionIntern;
-        this.ilink = linkIntern;
     }
-    public int getId(){return id;}
-public int getUser_id(){return user_id;}
-    public String getiTitle() {
+    public int getIid(){
+        return iid;
+    }
+
+    public int getUser_id(){
+        return user_id;
+    }
+
+    public String getInternTitle() {
         return ititle;
     }
 
-    public String getIdescription() {
+    public String getInternDescription() {
         return idescription;
     }
 
-    public String getiLink() {
+    public String getInternLink() {
         return ilink;
     }
 }

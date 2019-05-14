@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InternActivity extends AppCompatActivity {
-    private static final String URL_DATA="http://192.168.1.7/android/v1/intern.php";
+    private static final String URL_DATA="http://192.168.1.2/android/v1/intern.php";
     RecyclerView recyclerView;
     InternAdapter internAdapter;
 
