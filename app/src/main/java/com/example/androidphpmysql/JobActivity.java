@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JobActivity extends AppCompatActivity {
-    private static final String URL_DATA="http://192.168.43.129/android/v1/job.php";
+    private static final String URL_DATA="http://192.168.1.7/android/v1/job.php";
     RecyclerView recyclerView;
     JobAdapter jobAdapter;
 

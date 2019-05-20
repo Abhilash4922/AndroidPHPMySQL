@@ -62,6 +62,7 @@ public ProgressDialog progressDialog;
                 final String link=job.getLink();
                 final int jid=job.getId();
                 final int userid=job.getUser_id();
+                final int cid=job.getCid();
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.URL_JOBAPPLY, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -85,7 +86,7 @@ public ProgressDialog progressDialog;
                         params.put("jid",String.valueOf(jid));
                         params.put("job_name", title);
                         params.put("userid", String.valueOf(userid));
-
+params.put("cid",String.valueOf(cid));
 
                         return params;
                     }
@@ -118,6 +119,7 @@ public Button jobApply;
             textViewUserId=itemView.findViewById(R.id.textViewUserId);
             textViewJobId=itemView.findViewById(R.id.textViewJobId);
         linearLayout=itemView.findViewById(R.id.linearLayout);
+        String cid=String.valueOf(textViewCId);
         }
 
     }

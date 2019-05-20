@@ -7,6 +7,7 @@ public class Job {
     private String link;
     private int id;
     private int user_id;
+    private int cid;
 
     public Job(String title, String description, String link,int id,int user_id) {
 
@@ -14,7 +15,11 @@ public class Job {
         this.description = description;
         this.link = link;
         this.id=id;
+        this.cid=cid;
         this.user_id=user_id;
+    }
+    public int getCid(){
+        return cid;
     }
     public int getId(){
         return id;
