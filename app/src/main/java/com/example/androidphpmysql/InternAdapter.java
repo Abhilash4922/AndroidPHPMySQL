@@ -35,7 +35,7 @@ public class InternAdapter extends RecyclerView.Adapter<InternAdapter.ViewHolder
     }
 
     public String cid= ProfileActivity.cid1;
-
+public String name1=ProfileActivity.name;
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -63,6 +63,7 @@ public class InternAdapter extends RecyclerView.Adapter<InternAdapter.ViewHolder
                 final int iid=intern.getIid();
                 final int userid=intern.getUser_id();
                 final String cid1=cid;
+                final String name=name1;
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.URL_INTERNAPPLY, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -87,6 +88,7 @@ public class InternAdapter extends RecyclerView.Adapter<InternAdapter.ViewHolder
                         params.put("intern_name", ititle);
                         params.put("user_id", String.valueOf(userid));
 params.put("cid",String.valueOf(cid1));
+params.put("name",name);
                         return params;
                     }
                 };

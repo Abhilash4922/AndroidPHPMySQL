@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 public class ProfileActivity extends AppCompatActivity {
 public static String cid1;
+    public static String name;
+
     private TextView textViewName, textViewUserName, textViewEmail, textViewUserId;
 
     @Override
@@ -28,6 +30,7 @@ public static String cid1;
         textViewUserName.setText(SharedPrefManager.getInstance(this).getUsername());
         textViewEmail.setText(SharedPrefManager.getInstance(this).getUserEmail());
     cid1=SharedPrefManager.getInstance(this).getCId();
+    name=SharedPrefManager.getInstance(this).getName();
     }
 
     @Override

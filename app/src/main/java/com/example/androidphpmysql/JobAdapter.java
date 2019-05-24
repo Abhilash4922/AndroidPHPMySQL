@@ -34,6 +34,7 @@ public ProgressDialog progressDialog;
         this.context = context;
     }
     public String cid=ProfileActivity.cid1;
+    public String name1=ProfileActivity.name;
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -61,6 +62,7 @@ public ProgressDialog progressDialog;
                 final int jid=job.getId();
                 final int userid=job.getUser_id();
                 final String cid1=cid;
+                final String name=name1;
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.URL_JOBAPPLY, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -85,6 +87,7 @@ public ProgressDialog progressDialog;
                         params.put("job_name", title);
                         params.put("user_id", String.valueOf(userid));
                         params.put("cid",String.valueOf(cid1));
+                        params.put("name",name);
                         return params;
                     }
                 };
