@@ -30,28 +30,6 @@
         android:text="Job Discription"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
 
-    <TextView
-        android:id="@+id/textViewJobId"
-        android:layout_width="183dp"
-        android:layout_height="wrap_content"
-        android:text="Job ID"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:visibility="visible" />
-
-
-    <TextView
-        android:id="@+id/textViewUserId"
-        android:layout_width="83dp"
-        android:layout_height="wrap_content"
-        android:text="Job User ID"
-        android:visibility="visible" />
-
-        <TextView
-            android:id="@+id/textViewCID"
-            android:layout_width="108dp"
-            android:layout_height="wrap_content"
-            android:text="CId" />
-
         <Button
         android:id="@+id/buttonJobApply"
         android:layout_width="match_parent"

@@ -50,9 +50,6 @@ public class InternAdapter extends RecyclerView.Adapter<InternAdapter.ViewHolder
         viewHolder.textViewInternTitle.setText(intern.getInternTitle());
         viewHolder.textViewInternDescription.setText(intern.getInternDescription());
         viewHolder.textViewInternLink.setText(intern.getInternLink());
-        viewHolder.textViewInternId.setText(""+intern.getIid());
-        viewHolder.textViewUserId.setText(""+intern.getUser_id());
-        viewHolder.textViewCid.setText(cid);
         viewHolder.internApply.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -113,13 +110,10 @@ params.put("cid",String.valueOf(cid1));
         public TextView textViewCid;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewCid=itemView.findViewById(R.id.textViewCid);
             internApply=itemView.findViewById(R.id.buttonInternApply);
             textViewInternTitle=itemView.findViewById(R.id.textViewInternTitle);
             textViewInternDescription=itemView.findViewById(R.id.textViewInternDescription);
             textViewInternLink=itemView.findViewById(R.id.textViewInternLink);
-            textViewUserId=itemView.findViewById(R.id.textViewUserId);
-            textViewInternId=itemView.findViewById(R.id.textViewInternId);
             linearLayoutIntern=itemView.findViewById(R.id.linearLayoutIntern);
         }
 

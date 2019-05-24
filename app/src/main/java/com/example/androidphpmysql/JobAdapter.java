@@ -48,9 +48,6 @@ public ProgressDialog progressDialog;
         viewHolder.textViewTitle.setText(job.getJobTitle());
         viewHolder.textViewDescription.setText(job.getDescription());
         viewHolder.textViewLink.setText(job.getLink());
-        viewHolder.textViewJobId.setText(""+job.getId());
-        viewHolder.textViewUserId.setText(""+job.getUser_id());
-        viewHolder.textViewCId.setText(cid);
         viewHolder.jobApply.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -111,14 +108,10 @@ public Button jobApply;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            textViewCId=itemView.findViewById(R.id.textViewCID);
-            jobApply=itemView.findViewById(R.id.buttonJobApply);
+jobApply=itemView.findViewById(R.id.buttonJobApply);
             textViewTitle=itemView.findViewById(R.id.textViewTitle);
             textViewDescription=itemView.findViewById(R.id.textViewDiscription);
             textViewLink=itemView.findViewById(R.id.textViewLink);
-            textViewUserId=itemView.findViewById(R.id.textViewUserId);
-            textViewJobId=itemView.findViewById(R.id.textViewJobId);
         linearLayout=itemView.findViewById(R.id.linearLayout);
         }
 
