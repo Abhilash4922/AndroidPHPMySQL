@@ -34,6 +34,8 @@ public class InternAdapter extends RecyclerView.Adapter<InternAdapter.ViewHolder
         this.context = context;
     }
 
+    public String cid= ProfileActivity.cid1;
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -50,7 +52,8 @@ public class InternAdapter extends RecyclerView.Adapter<InternAdapter.ViewHolder
         viewHolder.textViewInternLink.setText(intern.getInternLink());
         viewHolder.textViewInternId.setText(""+intern.getIid());
         viewHolder.textViewUserId.setText(""+intern.getUser_id());
-        viewHolder.linearLayoutIntern.setOnClickListener(new View.OnClickListener() {
+        viewHolder.textViewCid.setText(cid);
+        viewHolder.internApply.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -62,6 +65,7 @@ public class InternAdapter extends RecyclerView.Adapter<InternAdapter.ViewHolder
                 final String link=intern.getInternLink();
                 final int iid=intern.getIid();
                 final int userid=intern.getUser_id();
+                final String cid1=cid;
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.URL_INTERNAPPLY, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -85,8 +89,7 @@ public class InternAdapter extends RecyclerView.Adapter<InternAdapter.ViewHolder
                         params.put("iid",String.valueOf(iid));
                         params.put("intern_name", ititle);
                         params.put("userid", String.valueOf(userid));
-
-
+params.put("cid",String.valueOf(cid1));
                         return params;
                     }
                 };
@@ -107,8 +110,10 @@ public class InternAdapter extends RecyclerView.Adapter<InternAdapter.ViewHolder
         public TextView textViewUserId;
         public LinearLayout linearLayoutIntern;
         public Button internApply;
+        public TextView textViewCid;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            textViewCid=itemView.findViewById(R.id.textViewCid);
             internApply=itemView.findViewById(R.id.buttonInternApply);
             textViewInternTitle=itemView.findViewById(R.id.textViewInternTitle);
             textViewInternDescription=itemView.findViewById(R.id.textViewInternDescription);

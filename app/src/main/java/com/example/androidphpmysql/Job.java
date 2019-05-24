@@ -25,6 +25,10 @@ public class Job {
         return id;
     }
 
+    public int getCId(){
+        return cid;
+    }
+
     public int getUser_id(){
         return user_id;
     }

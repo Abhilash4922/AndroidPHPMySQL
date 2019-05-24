@@ -33,7 +33,7 @@ public ProgressDialog progressDialog;
         this.jobList = jobs;
         this.context = context;
     }
-
+    public String cid=ProfileActivity.cid1;
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -50,7 +50,8 @@ public ProgressDialog progressDialog;
         viewHolder.textViewLink.setText(job.getLink());
         viewHolder.textViewJobId.setText(""+job.getId());
         viewHolder.textViewUserId.setText(""+job.getUser_id());
-        viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
+        viewHolder.textViewCId.setText(cid);
+        viewHolder.jobApply.setOnClickListener(new View.OnClickListener() {
 
             @Override
         public void onClick(View v) {
@@ -62,7 +63,7 @@ public ProgressDialog progressDialog;
                 final String link=job.getLink();
                 final int jid=job.getId();
                 final int userid=job.getUser_id();
-                final int cid=job.getCid();
+                final String cid1=cid;
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.URL_JOBAPPLY, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -86,8 +87,7 @@ public ProgressDialog progressDialog;
                         params.put("jid",String.valueOf(jid));
                         params.put("job_name", title);
                         params.put("userid", String.valueOf(userid));
-params.put("cid",String.valueOf(cid));
-
+                        params.put("cid",String.valueOf(cid1));
                         return params;
                     }
                 };
@@ -99,7 +99,6 @@ params.put("cid",String.valueOf(cid));
     public int getItemCount() {
         return jobList.size();
     }
-
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView textViewTitle;
         public TextView textViewDescription;
@@ -109,9 +108,11 @@ params.put("cid",String.valueOf(cid));
         public TextView textViewCId;
 public LinearLayout linearLayout;
 public Button jobApply;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewCId=itemView.findViewById(R.id.textViewCandidateId);
+
+            textViewCId=itemView.findViewById(R.id.textViewCID);
             jobApply=itemView.findViewById(R.id.buttonJobApply);
             textViewTitle=itemView.findViewById(R.id.textViewTitle);
             textViewDescription=itemView.findViewById(R.id.textViewDiscription);
@@ -119,7 +120,6 @@ public Button jobApply;
             textViewUserId=itemView.findViewById(R.id.textViewUserId);
             textViewJobId=itemView.findViewById(R.id.textViewJobId);
         linearLayout=itemView.findViewById(R.id.linearLayout);
-        String cid=String.valueOf(textViewCId);
         }
 
     }
