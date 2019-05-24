@@ -88,7 +88,7 @@ public class InternAdapter extends RecyclerView.Adapter<InternAdapter.ViewHolder
                         Map<String, String> params = new HashMap<>();
                         params.put("iid",String.valueOf(iid));
                         params.put("intern_name", ititle);
-                        params.put("userid", String.valueOf(userid));
+                        params.put("user_id", String.valueOf(userid));
 params.put("cid",String.valueOf(cid1));
                         return params;
                     }

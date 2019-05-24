@@ -86,7 +86,7 @@ public ProgressDialog progressDialog;
                         Map<String, String> params = new HashMap<>();
                         params.put("jid",String.valueOf(jid));
                         params.put("job_name", title);
-                        params.put("userid", String.valueOf(userid));
+                        params.put("user_id", String.valueOf(userid));
                         params.put("cid",String.valueOf(cid1));
                         return params;
                     }
