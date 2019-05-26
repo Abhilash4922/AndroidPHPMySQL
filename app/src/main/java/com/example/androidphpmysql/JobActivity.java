@@ -93,6 +93,11 @@ public class JobActivity extends AppCompatActivity {
             case R.id.menuProfile:
                 startActivity(new Intent(this,ProfileActivity.class));
                 break;
+            case R.id.menuAppliedJobs:
+                startActivity(new Intent(this,AppliedJobActivity.class));
+break;
+            case R.id.menuAppliedInterns:
+                startActivity(new Intent(this,AppliedInternActivity.class));
         }
         return true;
     }

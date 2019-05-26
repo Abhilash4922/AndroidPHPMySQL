@@ -45,17 +45,22 @@ public static String cid1;
             case R.id.menuLogout:
                 SharedPrefManager.getInstance(this).logout();
                 finish();
-                startActivity(new Intent(this, LoginActivity.class));
+                startActivity(new Intent(this,LoginActivity.class));
                 break;
             case R.id.menuJobs:
-                startActivity(new Intent(this, JobActivity.class));
+                startActivity(new Intent(this,JobActivity.class));
                 break;
             case R.id.menuInternship:
-                startActivity(new Intent(this, InternActivity.class));
+                startActivity(new Intent(this,InternActivity.class));
                 break;
             case R.id.menuProfile:
-                startActivity(new Intent(this, ProfileActivity.class));
+                startActivity(new Intent(this,ProfileActivity.class));
                 break;
+            case R.id.menuAppliedJobs:
+                startActivity(new Intent(this,AppliedJobActivity.class));
+break;
+            case R.id.menuAppliedInterns:
+                startActivity(new Intent(this,AppliedInternActivity.class));
         }
         return true;
     }

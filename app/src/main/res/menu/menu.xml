@@ -12,5 +12,11 @@
     <item
         android:id="@+id/menuProfile"
         android:title="Profile"/>
+    <item
+        android:id="@+id/menuAppliedJobs"
+        android:title="Applied Jobs"/>
+    <item
+        android:id="@+id/menuAppliedInterns"
+        android:title="Applied Internship"/>
 
 </menu>

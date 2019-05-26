@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -20,44 +21,44 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class InternActivity extends AppCompatActivity {
-    private static final String URL_DATA="http://192.168.43.129/android/v1/intern.php";
+public class AppliedInternActivity extends AppCompatActivity {
+    public String cid=ProfileActivity.cid1;
+    private static String APPLIED_INTERN="http://192.168.43.129/android/v1/appliedintern.php";
     RecyclerView recyclerView;
-    InternAdapter internAdapter;
+    AppliedInternAdapter appliedInternAdapter;
+    List<AppliedIntern> appliedInternList;
 
-    private List<Intern>internList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_intern);
-        internList = new ArrayList<>();
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewIntern);
+        setContentView(R.layout.activity_applied_intern);
+        appliedInternList=new ArrayList<>();
+        recyclerView=(RecyclerView)findViewById(R.id.recylcerViewAppliedIntern);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        loadIntern();
-
+       loadAppliedIntern();
     }
-    private void loadIntern(){
-        StringRequest stringRequest=new StringRequest(Request.Method.GET, URL_DATA, new Response.Listener<String>() {
+    private void loadAppliedIntern(){
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, APPLIED_INTERN, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONArray jsonArray=new JSONArray(response);
-                    for(int i=0;i<jsonArray.length();i++){
-                        JSONObject obj1=jsonArray.getJSONObject(i);
-                        String ititle=obj1.getString("ititle");
-                        String idescription=obj1.getString("idescription");
-                        String ilink=obj1.getString("ilink");
-                        int id=obj1.getInt("id");
-                        int user_id=obj1.getInt("user_id");
-                        Intern intern=new Intern(ititle,idescription,ilink,id,user_id);
-                        internList.add(intern);
-                    }
+                for(int i=0;i<jsonArray.length();i++){
+                    JSONObject jsonObject=jsonArray.getJSONObject(i);
+                    String intern_title=jsonObject.getString("intern_name");
+                    String intern_status=jsonObject.getString("status");
+                    AppliedIntern appliedIntern=new AppliedIntern(intern_title,intern_status);
+                    appliedInternList.add(appliedIntern);
+                }
 
-                    internAdapter = new InternAdapter(InternActivity.this, internList);
-                    recyclerView.setAdapter(internAdapter);
+                    appliedInternAdapter=new AppliedInternAdapter(AppliedInternActivity.this,appliedInternList);
+                    recyclerView.setAdapter(appliedInternAdapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -65,9 +66,15 @@ public class InternActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(InternActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(AppliedInternActivity.this,error.getMessage(),Toast.LENGTH_LONG).show();
             }
-        });
+        }){
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("cid",String.valueOf(cid));
+                return params;
+            }
+        };
         Volley.newRequestQueue(this).add(stringRequest);
     }
     @Override

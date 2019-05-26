@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -20,44 +21,44 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class InternActivity extends AppCompatActivity {
-    private static final String URL_DATA="http://192.168.43.129/android/v1/intern.php";
+public class AppliedJobActivity extends AppCompatActivity {
+    public String cid=ProfileActivity.cid1;
+    private static String APPLIED_JOB="http://192.168.43.129/android/v1/appliedjob.php";
     RecyclerView recyclerView;
-    InternAdapter internAdapter;
+    AppliedJobAdapter appliedJobAdapter;
+    List<AppliedJob> appliedJobList;
 
-    private List<Intern>internList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_intern);
-        internList = new ArrayList<>();
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewIntern);
+        setContentView(R.layout.activity_applied_job);
+        appliedJobList = new ArrayList<>();
+        recyclerView = (RecyclerView) findViewById(R.id.recylcerViewAppliedJob);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        loadIntern();
-
+        loadAppliedJob();
     }
-    private void loadIntern(){
-        StringRequest stringRequest=new StringRequest(Request.Method.GET, URL_DATA, new Response.Listener<String>() {
+    private void loadAppliedJob(){
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, APPLIED_JOB, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONArray jsonArray=new JSONArray(response);
                     for(int i=0;i<jsonArray.length();i++){
-                        JSONObject obj1=jsonArray.getJSONObject(i);
-                        String ititle=obj1.getString("ititle");
-                        String idescription=obj1.getString("idescription");
-                        String ilink=obj1.getString("ilink");
-                        int id=obj1.getInt("id");
-                        int user_id=obj1.getInt("user_id");
-                        Intern intern=new Intern(ititle,idescription,ilink,id,user_id);
-                        internList.add(intern);
+                        JSONObject jsonObject=jsonArray.getJSONObject(i);
+                        String title=jsonObject.getString("job_name");
+                        String status=jsonObject.getString("status");
+                        AppliedJob appliedJob=new AppliedJob(title,status);
+                        appliedJobList.add(appliedJob);
                     }
 
-                    internAdapter = new InternAdapter(InternActivity.this, internList);
-                    recyclerView.setAdapter(internAdapter);
+                    appliedJobAdapter=new AppliedJobAdapter(AppliedJobActivity.this,appliedJobList);
+                    recyclerView.setAdapter(appliedJobAdapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -65,11 +66,18 @@ public class InternActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(InternActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(AppliedJobActivity.this,error.getMessage(),Toast.LENGTH_LONG).show();
             }
-        });
+        }){
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("cid",String.valueOf(cid));
+                return params;
+            }
+        };
         Volley.newRequestQueue(this).add(stringRequest);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);
