@@ -21,16 +21,30 @@
         <TextView
             android:layout_width="400dp"
             android:layout_height="30dp"
+            android:id="@+id/textViewAppliedJid"
+            android:text="Job Id"
+            android:visibility="visible"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+        <TextView
+            android:layout_width="400dp"
+            android:layout_height="30dp"
+            android:id="@+id/textViewAppliedCid"
+            android:text="C Id"
+            android:visibility="visible"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+
+        <TextView
+            android:layout_width="400dp"
+            android:layout_height="30dp"
             android:id="@+id/textViewAppliedJobStatus"
             android:text="Job Status"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/buttonViewJobMessage"
+            android:layout_width="197dp"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:visibility="invisible"/>
+            android:text="ViewMessage" />
 
     </LinearLayout>
 

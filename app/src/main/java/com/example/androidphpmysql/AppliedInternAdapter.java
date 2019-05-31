@@ -33,6 +33,8 @@ public class AppliedInternAdapter extends RecyclerView.Adapter<AppliedInternAdap
 AppliedIntern appliedIntern=appliedInternList.get(i);
 appliedInternViewHolder.textViewAppliedInternTitle.setText(appliedIntern.getInternTitle());
         appliedInternViewHolder.textViewAppliedInternStatus.setText(appliedIntern.getInternStatus());
+        appliedInternViewHolder.textViewAppliedIid.setText(appliedIntern.getIid());
+
     }
 
     @Override
@@ -42,11 +44,12 @@ appliedInternViewHolder.textViewAppliedInternTitle.setText(appliedIntern.getInte
     }
 
     class AppliedInternViewHolder extends RecyclerView.ViewHolder{
-TextView textViewAppliedInternTitle,textViewAppliedInternStatus;
+TextView textViewAppliedInternTitle,textViewAppliedInternStatus,textViewAppliedIid;
     public AppliedInternViewHolder(@NonNull View itemView) {
         super(itemView);
         textViewAppliedInternTitle=itemView.findViewById(R.id.textViewAppliedInternTitle);
         textViewAppliedInternStatus=itemView.findViewById(R.id.textViewAppliedInternStatus);
+        textViewAppliedIid=itemView.findViewById(R.id.textViewAppliedIid);
     }
 }
 }

@@ -28,11 +28,18 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
+            android:layout_width="400dp"
+            android:layout_height="3dp"
+            android:id="@+id/textViewAppliedIid"
+            android:text="Intern Id"
+            android:visibility="invisible"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+
+        <Button
+            android:id="@+id/buttonViewInternMessage"
+            android:layout_width="197dp"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:visibility="invisible"/>
+            android:text="ViewMessage" />
 
     </LinearLayout>
 

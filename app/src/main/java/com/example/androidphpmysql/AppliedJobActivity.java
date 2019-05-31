@@ -27,11 +27,12 @@ import java.util.Map;
 
 public class AppliedJobActivity extends AppCompatActivity {
     public String cid=ProfileActivity.cid1;
+    public static String jid1;
+
     private static String APPLIED_JOB="http://192.168.43.129/android/v1/appliedjob.php";
     RecyclerView recyclerView;
     AppliedJobAdapter appliedJobAdapter;
     List<AppliedJob> appliedJobList;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,9 @@ public class AppliedJobActivity extends AppCompatActivity {
                         JSONObject jsonObject=jsonArray.getJSONObject(i);
                         String title=jsonObject.getString("job_name");
                         String status=jsonObject.getString("status");
-                        AppliedJob appliedJob=new AppliedJob(title,status);
+                        String jid=jsonObject.getString("jid");
+                        jid1=String.valueOf(jsonObject.getString("jid"));
+                        AppliedJob appliedJob=new AppliedJob(title,status,jid);
                         appliedJobList.add(appliedJob);
                     }
 
@@ -103,7 +106,7 @@ public class AppliedJobActivity extends AppCompatActivity {
                 break;
             case R.id.menuAppliedJobs:
                 startActivity(new Intent(this,AppliedJobActivity.class));
-break;
+                break;
             case R.id.menuAppliedInterns:
                 startActivity(new Intent(this,AppliedInternActivity.class));
         }

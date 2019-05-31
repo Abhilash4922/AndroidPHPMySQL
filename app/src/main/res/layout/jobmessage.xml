@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="8dp">
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:padding="@dimen/cardview_compat_inset_shadow"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/textViewJobMessage"
+            android:layout_width="400dp"
+            android:layout_height="100dp"
+            android:text="You didn't receive any messages from recruiter yet....." />
+        <TextView
+            android:id="@+id/textViewJobMessageTime"
+            android:layout_width="400dp"
+            android:layout_height="30dp"
+            android:text="Time" />
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>
