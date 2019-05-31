@@ -10,8 +10,9 @@ import android.widget.TextView;
 public class ProfileActivity extends AppCompatActivity {
 public static String cid1;
     public static String name;
+    public static String resume;
 
-    private TextView textViewName, textViewUserName, textViewEmail, textViewUserId;
+    private TextView textViewName, textViewUserName, textViewEmail, textViewUserResume;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,16 +22,18 @@ public static String cid1;
             finish();
             startActivity(new Intent(this, LoginActivity.class));
         }
-        textViewUserId = (TextView) findViewById(R.id.textViewCandidateId);
+        textViewUserResume = (TextView) findViewById(R.id.textViewCandidateResume);
         textViewName = (TextView) findViewById(R.id.textViewName);
         textViewUserName = (TextView) findViewById(R.id.textViewUserName);
         textViewEmail = (TextView) findViewById(R.id.textViewEmail);
         textViewName.setText(SharedPrefManager.getInstance(this).getName());
-        textViewUserId.setText(SharedPrefManager.getInstance(this).getCId());
+        textViewUserResume.setText(SharedPrefManager.getInstance(this).getCId());
         textViewUserName.setText(SharedPrefManager.getInstance(this).getUsername());
         textViewEmail.setText(SharedPrefManager.getInstance(this).getUserEmail());
+        textViewUserResume.setText(SharedPrefManager.getInstance(this).getResume());
     cid1=SharedPrefManager.getInstance(this).getCId();
     name=SharedPrefManager.getInstance(this).getName();
+    resume=SharedPrefManager.getInstance(this).getResume();
     }
 
     @Override

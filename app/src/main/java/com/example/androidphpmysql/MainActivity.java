@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-private EditText editTextName,editTextUserName,editTextEmail,editTextPassword;
+private EditText editTextName,editTextUserName,editTextEmail,editTextPassword,getEditTextResume;
 private Button buttonRegister;
 private ProgressDialog progressDialog;
 private TextView textViewLogin;
@@ -31,7 +31,7 @@ private TextView textViewLogin;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+getEditTextResume=(EditText)findViewById(R.id.editTextResume);
         editTextEmail=(EditText)findViewById(R.id.editTextEmail);
         editTextName=(EditText)findViewById(R.id.editTextName);
         editTextUserName=(EditText)findViewById(R.id.editTextUsername);
@@ -49,6 +49,7 @@ private TextView textViewLogin;
         }
     }
     private void registerUser() {
+        final String resume=getEditTextResume.getText().toString().trim();
         final String email = editTextEmail.getText().toString().trim();
         final String name = editTextName.getText().toString().trim();
         final String username = editTextUserName.getText().toString().trim();
@@ -79,6 +80,7 @@ private TextView textViewLogin;
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("email", email);
+                params.put("resume",resume);
                 params.put("name", name);
                 params.put("username", username);
                 params.put("password", password);

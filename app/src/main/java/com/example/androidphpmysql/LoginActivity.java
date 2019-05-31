@@ -69,7 +69,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                                 obj.getInt("cid"),
                                                 obj.getString("name"),
                                                 obj.getString("username"),
-                                                obj.getString("email")
+                                                obj.getString("email"),
+                                                obj.getString("resume")
                                         );
                                startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
                                finish();

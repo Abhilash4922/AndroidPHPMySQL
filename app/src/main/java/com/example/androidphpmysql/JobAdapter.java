@@ -33,6 +33,7 @@ public ProgressDialog progressDialog;
         this.jobList = jobs;
         this.context = context;
     }
+    public String resume1=ProfileActivity.resume;
     public String cid=ProfileActivity.cid1;
     public String name1=ProfileActivity.name;
     @NonNull
@@ -63,6 +64,7 @@ public ProgressDialog progressDialog;
                 final int userid=job.getUser_id();
                 final String cid1=cid;
                 final String name=name1;
+                final String resume=resume1;
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.URL_JOBAPPLY, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -88,6 +90,7 @@ public ProgressDialog progressDialog;
                         params.put("user_id", String.valueOf(userid));
                         params.put("cid",String.valueOf(cid1));
                         params.put("name",name);
+                        params.put("resume",resume);
                         return params;
                     }
                 };
