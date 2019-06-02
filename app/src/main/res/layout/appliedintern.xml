@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="4dp">
+    app:cardCornerRadius="10dp">
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:padding="@dimen/cardview_compat_inset_shadow"
+        android:padding="15dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -29,11 +29,19 @@
 
         <TextView
             android:layout_width="400dp"
-            android:layout_height="3dp"
+            android:layout_height="1dp"
             android:id="@+id/textViewAppliedIid"
             android:text="Intern Id"
             android:visibility="invisible"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+        <TextView
+            android:layout_width="400dp"
+            android:layout_height="1dp"
+            android:id="@+id/textViewAppliedICid"
+            android:text="C Id"
+            android:visibility="invisible"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+
 
         <Button
             android:id="@+id/buttonViewInternMessage"

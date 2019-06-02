@@ -27,13 +27,12 @@ import java.util.Map;
 
 public class AppliedInternActivity extends AppCompatActivity {
     public String cid=ProfileActivity.cid1;
+    public static String iid1;
 
     private static String APPLIED_INTERN="http://192.168.43.129/android/v1/appliedintern.php";
     RecyclerView recyclerView;
     AppliedInternAdapter appliedInternAdapter;
     List<AppliedIntern> appliedInternList;
-
-    public static String iid1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +55,9 @@ public class AppliedInternActivity extends AppCompatActivity {
                     String intern_title=jsonObject.getString("intern_name");
                     String intern_status=jsonObject.getString("status");
                     String iid=jsonObject.getString("iid");
-                    AppliedIntern appliedIntern=new AppliedIntern(intern_title,intern_status,iid);
+                    String cid=jsonObject.getString("cid");
+                    iid1=jsonObject.getString("iid");
+                    AppliedIntern appliedIntern=new AppliedIntern(intern_title,intern_status,iid,cid);
                     appliedInternList.add(appliedIntern);
                 }
 

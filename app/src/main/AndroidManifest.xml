@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".JobMessageActivity"/>
+        <activity android:name=".InternMessageActivity"></activity>
+        <activity android:name=".JobMessageActivity" />
         <activity android:name=".AppliedInternActivity" />
         <activity android:name=".AppliedJobActivity" />
         <activity android:name=".MainActivity" />

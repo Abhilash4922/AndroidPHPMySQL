@@ -31,8 +31,7 @@
         app:layout_constraintVertical_bias="0.084" />
 
     <TextView
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:id="@+id/textViewJobMessage"
+        android:id="@+id/textViewInternMessage"
         android:layout_width="267dp"
         android:layout_height="100dp"
         android:layout_marginStart="8dp"
@@ -40,12 +39,13 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Message"
+        android:text="Name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintVertical_bias="0.144" />
 
 
     <TextView
@@ -64,7 +64,7 @@
         app:layout_constraintVertical_bias="0.279" />
 
     <TextView
-        android:id="@+id/textViewJobMessageTime"
+        android:id="@+id/textViewInternMessageTime"
         android:layout_width="267dp"
         android:layout_height="31dp"
         android:layout_marginStart="8dp"

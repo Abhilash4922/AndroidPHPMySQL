@@ -9,10 +9,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AppliedJobAdapter extends RecyclerView.Adapter<AppliedJobAdapter.AppliedJobViewHolder> {
+    private static String JOB_MESSAGE="http://192.168.43.129/android/v1/jobmessage.php";
     private Context mct;
     private List<AppliedJob> appliedJobList;
     public String cid=ProfileActivity.cid1;
@@ -33,21 +47,63 @@ public class AppliedJobAdapter extends RecyclerView.Adapter<AppliedJobAdapter.Ap
 
     @Override
     public void onBindViewHolder(@NonNull AppliedJobViewHolder appliedJobViewHolder, int i) {
-AppliedJob appliedJob=appliedJobList.get(i);
-appliedJobViewHolder.textViewAppliedJobTitle.setText(appliedJob.getTitle());
+       final AppliedJob appliedJob = appliedJobList.get(i);
+        appliedJobViewHolder.textViewAppliedJobTitle.setText(appliedJob.getTitle());
         appliedJobViewHolder.textViewAppliedJobStatus.setText(appliedJob.getStatus());
         appliedJobViewHolder.textViewAppliedJid.setText(appliedJob.getJid());
-        ji=appliedJob.getJid();
-appliedJobViewHolder.textViewAppliedCid.setText(cid);
-appliedJobViewHolder.button.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Intent i=new Intent(v.getContext(),JobMessageActivity.class);
-        mct.startActivity(i);
-    }
-});
-    }
+        ji = appliedJob.getJid();
+        appliedJobViewHolder.textViewAppliedCid.setText(cid);
+        appliedJobViewHolder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadMessage();
+            }
 
+            private void loadMessage() {
+                final String jid = appliedJob.getJid();
+                final String cid1 = cid;
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, JOB_MESSAGE, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            for (int i=0;i<jsonArray.length();i++)
+                            {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String time = jsonObject.getString("created_at");
+                                String message = jsonObject.getString("message");
+
+                                Intent myIntent = new Intent(mct, JobMessageActivity.class);
+                                myIntent.putExtra("message",message ); //Optional parameters
+                                myIntent.putExtra("time",time ); //Optional parameters
+
+                                mct.getApplicationContext().startActivity(myIntent);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(mct.getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+
+                    }
+                }) {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<>();
+                        params.put("jid", String.valueOf(jid));
+                        params.put("cid", String.valueOf(cid1));
+                        return params;
+                    }
+                };
+                RequestHandler.getInstance(mct).addToRequestQueue(stringRequest);
+            }
+        });
+
+    }
     @Override
     public int getItemCount() {
         return appliedJobList.size();

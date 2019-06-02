@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class AppliedJobActivity extends AppCompatActivity {
     public String cid=ProfileActivity.cid1;
-    public static String jid1;
+   public static String jid1;
 
     private static String APPLIED_JOB="http://192.168.43.129/android/v1/appliedjob.php";
     RecyclerView recyclerView;
@@ -55,7 +55,6 @@ public class AppliedJobActivity extends AppCompatActivity {
                         String title=jsonObject.getString("job_name");
                         String status=jsonObject.getString("status");
                         String jid=jsonObject.getString("jid");
-                        jid1=String.valueOf(jsonObject.getString("jid"));
                         AppliedJob appliedJob=new AppliedJob(title,status,jid);
                         appliedJobList.add(appliedJob);
                     }
