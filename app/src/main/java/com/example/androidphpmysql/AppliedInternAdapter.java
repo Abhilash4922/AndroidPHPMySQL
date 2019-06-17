@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class AppliedInternAdapter extends RecyclerView.Adapter<AppliedInternAdapter.AppliedInternViewHolder> {
     private Context mct;
-    private static String INTERN_MESSAGE="http://192.168.43.129/android/v1/internmessage.php";
+    private static String INTERN_MESSAGE="http://127.0.0.1/android/v1/internmessage.php";
 
     public String cid=ProfileActivity.cid1;
     private List<AppliedIntern> appliedInternList;

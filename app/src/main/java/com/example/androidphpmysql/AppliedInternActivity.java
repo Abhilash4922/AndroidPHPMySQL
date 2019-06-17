@@ -29,7 +29,7 @@ public class AppliedInternActivity extends AppCompatActivity {
     public String cid=ProfileActivity.cid1;
     public static String iid1;
 
-    private static String APPLIED_INTERN="http://192.168.43.129/android/v1/appliedintern.php";
+    private static String APPLIED_INTERN="http://127.0.0.1/android/v1/appliedintern.php";
     RecyclerView recyclerView;
     AppliedInternAdapter appliedInternAdapter;
     List<AppliedIntern> appliedInternList;
