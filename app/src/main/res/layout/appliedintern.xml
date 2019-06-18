@@ -47,7 +47,7 @@
             android:id="@+id/buttonViewInternMessage"
             android:layout_width="197dp"
             android:layout_height="wrap_content"
-            android:text="ViewMessage" />
+            android:text="View Message" />
 
     </LinearLayout>
 
