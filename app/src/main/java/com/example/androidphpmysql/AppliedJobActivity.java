@@ -29,7 +29,7 @@ public class AppliedJobActivity extends AppCompatActivity {
     public String cid=ProfileActivity.cid1;
    public static String jid1;
 
-    private static String APPLIED_JOB="http://127.0.0.1/android/v1/appliedjob.php";
+    private static String APPLIED_JOB="http://192.168.43.129/android/v1/appliedjob.php";
     RecyclerView recyclerView;
     AppliedJobAdapter appliedJobAdapter;
     List<AppliedJob> appliedJobList;

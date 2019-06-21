@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 public class AppliedJobAdapter extends RecyclerView.Adapter<AppliedJobAdapter.AppliedJobViewHolder> {
-    private static String JOB_MESSAGE="http://127.0.0.1/android/v1/jobmessage.php";
+    private static String JOB_MESSAGE="http://192.168.43.129/android/v1/jobmessage.php";
     private Context mct;
     private List<AppliedJob> appliedJobList;
     public String cid=ProfileActivity.cid1;
